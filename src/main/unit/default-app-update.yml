@@ -1,0 +1,3 @@
+provider: generic
+url: www.wwj.fanwe.com/download/
+updaterCacheDirName: my-project-updater

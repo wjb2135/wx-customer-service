@@ -1,0 +1,122 @@
+import Vue from 'vue'
+import Router from 'vue-router'
+import user from './user/index'
+import login from './login/index'
+import crm from './crm/index'
+import friend from './friend/index'
+import history from './history/index'
+import home from './home/index'
+import invite from './invite/index'
+import monitor from './monitor/index'
+import session from './session/index'
+import visitor from './visitor/index'
+import setting from './setting/index'
+import about from './about/index'
+Vue.use(Router)
+
+const router = new Router({
+  routes: [
+    {
+      path: '/',
+      redirect: '/home',
+      meta: {
+        pageType: 'home',
+        rowLeftShow: true,
+        rowRightShow: true
+      }
+    },
+    {
+      path: '/setPwd',
+      name: 'setPwd',
+      component: resolve => require(['@/components/setPwd'], resolve).default,
+      meta: {
+        rowLeftShow: false,
+        rowRightShow: false
+      }
+    },
+    {
+      path: '/dialog/service',
+      name: 'serviceDialog',
+      component: resolve => require(['@/components/serviceDialog'], resolve).default,
+      meta: {
+        rowLeftShow: false,
+        rowRightShow: false
+      }
+    },
+    {
+      path: '/dialog/media',
+      name: 'mediaDialog',
+      component: resolve => require(['@/components/mediaDialog'], resolve).default,
+      meta: {
+        rowLeftShow: false,
+        rowRightShow: false
+      }
+    },
+    {
+      path: '/dialog/invite',
+      name: 'inviteDialog',
+      component: resolve => require(['@/components/inviteDialog'], resolve).default,
+      meta: {
+        rowLeftShow: false,
+        rowRightShow: false
+      }
+    },
+    {
+      path: '/dialog/filter',
+      name: 'filterDialog',
+      component: resolve => require(['@/components/filterDialog'], resolve).default,
+      meta: {
+        rowLeftShow: false,
+        rowRightShow: false
+      }
+    },
+    {
+      path: '/dialog/reason',
+      name: 'reasonDialog',
+      component: resolve => require(['@/components/reasonDialog'], resolve).default,
+      meta: {
+        rowLeftShow: false,
+        rowRightShow: false
+      }
+    },
+    {
+      path: '/dialog/suggestion',
+      name: 'suggestionDialog',
+      component: resolve => require(['@/components/suggestionDialog'], resolve).default,
+      meta: {
+        rowLeftShow: false,
+        rowRightShow: false
+      }
+    },
+    ...login,
+    ...user,
+    ...crm,
+    ...friend,
+    ...history,
+    ...home,
+    ...invite,
+    ...monitor,
+    ...session,
+    ...visitor,
+    ...setting,
+    ...about,
+    {
+      path: '*',
+      redirect: '/'
+    }
+  ]
+})
+
+// router.beforeEach((to, from, next) => {
+//   const code = +localStorage.getItem('code')
+//   if (code) { // 本地是否有code，1 未登录，0 登录
+//     next({path: '/login'})
+//   } else {
+//     if (to.meta.isLoginPage) { // 判断是否在登录页
+//       next({path: '/'})
+//     } else {
+//       next()
+//     }
+//   }
+// })
+export default router
